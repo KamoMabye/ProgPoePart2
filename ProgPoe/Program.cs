@@ -19,7 +19,7 @@
 
             Console.WriteLine();
 
-            int[] ingrQuant = new int[recipe.NumIn];
+            double[] ingrQuant = new double[recipe.NumIn];
             string[] ingrName = new string[recipe.NumIn];
             string[] ingrUnit = new string[recipe.NumIn];
 
@@ -34,7 +34,7 @@
                 ingrName[i] = Console.ReadLine();
                 try
                 {
-                    ingrQuant[i] = Convert.ToInt32(Console.ReadLine());
+                    ingrQuant[i] = Convert.ToDouble(Console.ReadLine());
                 }
                 catch (FormatException e)
                 {
@@ -44,7 +44,7 @@
                 while (ingrQuant[i] <= 0)
                 {
                     Console.WriteLine("Please make sure your quantity is correctly input!");
-                    ingrQuant[i] = Convert.ToInt32(Console.ReadLine());
+                    ingrQuant[i] = Convert.ToDouble(Console.ReadLine());
                 }
                 ingrUnit[i] = Console.ReadLine();
                 Console.WriteLine();
@@ -71,7 +71,52 @@
             }
             recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit);
             recipe.DisplaySteps(steps);
+            int choice = 0;
+            int c = 0;
+            c = recipe.Menu(choice);
+            while (!(c >=4))
+            {
+                if (c == 1)
+                {
+                    double[] scaledQuant = new double[ingrQuant.Length];
+                    int scale = 0;
+                    Console.WriteLine("Please indicate how much you would like to scale the quantities by:\n" +
+                        "1.) Scale by 0.5\n" +
+                        "2.) Scale by 2\n" +
+                        "3.) Scale by 3");
+                    try
+                    {
+                        scale = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Please make sure you enter a number!");
+                    }
 
+                    scaledQuant = recipe.scaleQuantity(ingrQuant, scale);
+
+                    if (scale == 1)
+                    {
+                        Console.WriteLine("Your ingredient quantities were  scaled by 0.5");
+                    }
+                    else if (scale == 2)
+                    {
+                        Console.WriteLine("Your ingredient quantities were  scaled by 2");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your ingredient quantities were scaled by 3");
+                    }
+
+                    Console.WriteLine("Here is the result:");
+                    recipe.DisplayIngredients(ingrName, scaledQuant, ingrUnit);
+                    recipe.DisplaySteps(steps);
+
+                    recipe.Menu(choice);
+                }
+            }
+               
+            
         }
     }
 }
