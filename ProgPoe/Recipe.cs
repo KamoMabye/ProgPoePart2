@@ -11,8 +11,8 @@ namespace ProgPoe
         public string[] NameOfIn { get; set; }
         public int[] QuantOfIn { get; set; }
         public string[] UnitOfIn { get; set; }
-        public int NumIn;
-        public int NumStep;
+        public int NumIn = 0;
+        public int NumStep = 0;
         public string[] Steps {get; set; }
 
 
