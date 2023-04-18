@@ -41,15 +41,34 @@
                     Console.WriteLine("Please make sure you enter a number!");
                 }
 
-                while (ingrQuant[i] >= 0)
+                while (ingrQuant[i] <= 0)
                 {
                     Console.WriteLine("Please make sure your quantity is correctly input!");
                     ingrQuant[i] = Convert.ToInt32(Console.ReadLine());
                 }
                 ingrUnit[i] = Console.ReadLine();
+                Console.WriteLine();
             }
 
+            Console.WriteLine("Please indicate the amount of steps this recipe requires: ");
+            try
+            {
+                recipe.NumStep = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Please make sure you enter a number!");
+            }
 
+            string[] steps = new string[recipe.NumStep];
+            int q = 0;
+            for (int i = 0; i < steps.Length;i++)
+            {
+                q++;
+                Console.WriteLine($"Step {q}:");
+                steps[i] = Console.ReadLine();
+                Console.WriteLine();
+            }
 
         }
     }
