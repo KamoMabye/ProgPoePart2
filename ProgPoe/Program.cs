@@ -30,7 +30,7 @@
             {
                 j++;
                 Console.WriteLine($"For ingredient number {j},\n" +
-                    $" Please enter the name, quantity and unit of measurment:");
+                    $" Please enter the name, quantity and unit of measurement:");
                 ingrName[i] = Console.ReadLine();
                 try
                 {
@@ -70,6 +70,7 @@
                 Console.WriteLine();
             }
             recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit);
+            recipe.DisplaySteps(steps);
 
         }
     }

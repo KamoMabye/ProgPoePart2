@@ -18,10 +18,23 @@ namespace ProgPoe
         public void DisplayIngredients(string[] NameOfIn, int[] QuantOfIn, string[] UnitOfIn)
         {
             int a = 0;
+            Console.WriteLine("List of ingredients:");
             for (int i = 0;i<NameOfIn.Length;i++)
             {
                 a++;
-                Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfIn[i]}\n" + $"Unit of measurment: {UnitOfIn[i]}");
+                Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfIn[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
+                Console.WriteLine();
+            }
+        }
+        public void DisplaySteps(string[] Steps)
+        {
+            int b = 0;
+            Console.WriteLine("Steps for the recipe:");
+            for (int i = 0; i< Steps.Length;i++)
+            {
+                b++;
+                Console.WriteLine($"Step {b}:\n" +
+                    $"{Steps[i]}");
                 Console.WriteLine();
             }
         }
