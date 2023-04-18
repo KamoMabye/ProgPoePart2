@@ -69,6 +69,7 @@
                 steps[i] = Console.ReadLine();
                 Console.WriteLine();
             }
+            recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit);
 
         }
     }

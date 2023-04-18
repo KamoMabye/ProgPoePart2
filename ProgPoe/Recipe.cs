@@ -15,6 +15,15 @@ namespace ProgPoe
         public int NumStep = 0;
         public string[] Steps {get; set; }
 
-
+        public void DisplayIngredients(string[] NameOfIn, int[] QuantOfIn, string[] UnitOfIn)
+        {
+            int a = 0;
+            for (int i = 0;i<NameOfIn.Length;i++)
+            {
+                a++;
+                Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfIn[i]}\n" + $"Unit of measurment: {UnitOfIn[i]}");
+                Console.WriteLine();
+            }
+        }
     }
 }
