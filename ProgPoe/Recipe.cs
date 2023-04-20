@@ -42,25 +42,26 @@ namespace ProgPoe
         public double[] scaleQuantity(double[] QuantOfIn,int scale)
         {
             double[] scaQuant = new double[QuantOfIn.Length];
+            scaQuant = QuantOfIn;
             if (scale == 1)
             {
                 for (int i = 0; i < scaQuant.Length; i++)
                 {
-                    scaQuant[i] = QuantOfIn[i] * 0.5;
+                    scaQuant[i] = scaQuant[i] * 0.5;
                 }
             }
             else if (scale == 2)
             {
                 for (int i = 0; i < scaQuant.Length; i++)
                 {
-                    scaQuant[i] = QuantOfIn[i] * 2;
+                    scaQuant[i] = scaQuant[i] * 2;
                 }
             }
             else
             {
                 for (int i = 0; i < scaQuant.Length; i++)
                 {
-                    scaQuant[i] = QuantOfIn[i] * 3;
+                    scaQuant[i] = scaQuant[i] * 3;
                 }
             }
 
