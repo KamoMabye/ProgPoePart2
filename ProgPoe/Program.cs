@@ -30,7 +30,7 @@
             {
                 j++;
                 Console.WriteLine($"For ingredient number {j},\n" +
-                    $" Please enter the name, quantity and unit of measurement:");
+                    $"Please enter the name, quantity and unit of measurement:");
                 ingrName[i] = Console.ReadLine();
                 try
                 {
@@ -71,15 +71,15 @@
             }
             recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit);
             recipe.DisplaySteps(steps);
+            double[] scaledQuant = new double[ingrQuant.Length];
             int choice = 0;
             int c = 0;
             int scale = 0;
             c = recipe.Menu(choice);
-            while (!(c >4))
+            while (!(c >=4))
             {
                 if (c == 1)
                 {
-                    double[] scaledQuant = new double[ingrQuant.Length];
                     
                     Console.WriteLine("Please indicate how much you would like to scale the quantities by:\n" +
                         "1.) Scale by 0.5\n" +
@@ -93,8 +93,12 @@
                     {
                         Console.WriteLine("Please make sure you enter a number!");
                     }
-
-                    ingrQuant = recipe.scaleQuantity(ingrQuant, scale);
+                    double[] scaQuant = new double[ingrQuant.Length];
+                    for (int i = 0; i < ingrQuant.Length;i++)
+                    {
+                        scaQuant[i] = ingrQuant[i];
+                    }
+                    scaledQuant = recipe.scaleQuantity(scaQuant, scale);
 
                     if (scale == 1)
                     {
@@ -110,17 +114,43 @@
                     }
 
                     Console.WriteLine("Here is the result:");
-                    recipe.DisplayIngredients(ingrName, ingrQuant, ingrUnit);
+                    recipe.DisplayIngredients(ingrName, scaledQuant, ingrUnit);
                     recipe.DisplaySteps(steps);
 
                     c = recipe.Menu(choice);
                 }
                 else if (c == 2)
                 {
+                    int con = 0;
                     Console.WriteLine("You chose to reset all your quantites. Do you want to continue?\n" +
                         "1.) Yes\n" +
                         "2.) No");
+                    try
+                    {
+                        con = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Please make sure you enter a number!");
+                    }
+
+                    if (con == 1)
+                    {
+                        for (int i = 0; i < ingrQuant.Length; i++)
+                        {
+                            scaledQuant[i] = ingrQuant[i];
+                        }
+                        recipe.resetQuantity(ingrName,ingrQuant, ingrUnit);
+                        recipe.DisplaySteps(steps);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your quantities have not been reset!");
+                    }
+
+                    c = recipe.Menu(choice);
                 }
+
             }
                
             

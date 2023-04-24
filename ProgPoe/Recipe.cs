@@ -41,8 +41,8 @@ namespace ProgPoe
 
         public double[] scaleQuantity(double[] QuantOfIn,int scale)
         {
-            double[] scaQuant = new double[QuantOfIn.Length];
-            scaQuant = QuantOfIn;
+            
+            double [] scaQuant = QuantOfIn;
             if (scale == 1)
             {
                 for (int i = 0; i < scaQuant.Length; i++)
@@ -86,5 +86,19 @@ namespace ProgPoe
             }
             return choice;
         }
+
+        public void resetQuantity(string [] NameOfIn, double[] QuantOfIn, string[] UnitOfIn)
+        {
+            Console.WriteLine("All quantites have been reset to their original quantities.");
+            int a = 0;
+            Console.WriteLine("List of ingredients:");
+            for (int i = 0; i < NameOfIn.Length; i++)
+            {
+                a++;
+                Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfIn[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
+                Console.WriteLine();
+            }
+        }
+
     }
 }
