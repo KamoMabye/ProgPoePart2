@@ -105,6 +105,32 @@
 
                     c = recipe.Menu(choice);
                 }
+                else if (c == 3)
+                {
+                    int d = 0;
+                    Console.WriteLine("You are going to delete your recipe. Do you want to continue?\n" +
+                        "1.) Yes\n" +
+                        "2.) No");
+                    try
+                    {
+                        d = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Please make sure you enter a number!");
+                    }
+
+                    if (d == 1)
+                    {
+                        recipe.deleteRecipe(ingrName, ingrQuant, ingrUnit);
+                        recipe.createRecipe(ingrName, ingrQuant, ingrUnit);
+                        recipe.DisplayIngredients(ingrName, ingrQuant, ingrUnit);
+                    }
+                    else{
+                        Console.WriteLine("Your recipe was not deleted.");
+                    }
+                    c = recipe.Menu(choice);
+                }
 
             }
                

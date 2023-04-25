@@ -36,7 +36,14 @@ namespace ProgPoe
                 while (ingrQuant[i] <= 0)
                 {
                     Console.WriteLine("Please make sure your quantity is correctly input!");
-                    ingrQuant[i] = Convert.ToDouble(Console.ReadLine());
+                    try
+                    {
+                        ingrQuant[i] = Convert.ToDouble(Console.ReadLine());
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Please make sure you enter a number!");
+                    }
                 }
                 ingrUnit[i] = Console.ReadLine();
                 Console.WriteLine();
@@ -149,5 +156,12 @@ namespace ProgPoe
             DisplaySteps(Steps);
         }
 
+        public void deleteRecipe(string[] ingrName, double[] ingrQuant, string[] ingrUnit)
+        {
+            Array.Clear(ingrName);
+            Array.Clear(ingrQuant);
+            Array.Clear(ingrUnit);
+            Console.WriteLine("Your recipe has been deleted! Create a new recipe now:");
+        }
     }
 }
