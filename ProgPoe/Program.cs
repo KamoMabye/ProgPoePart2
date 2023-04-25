@@ -23,54 +23,9 @@
             string[] ingrName = new string[recipe.NumIn];
             string[] ingrUnit = new string[recipe.NumIn];
 
-            
-
-            int j = 0;
-            for (int i = 0; i<ingrQuant.Length; i++)
-            {
-                j++;
-                Console.WriteLine($"For ingredient number {j},\n" +
-                    $"Please enter the name, quantity and unit of measurement:");
-                ingrName[i] = Console.ReadLine();
-                try
-                {
-                    ingrQuant[i] = Convert.ToDouble(Console.ReadLine());
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine("Please make sure you enter a number!");
-                }
-
-                while (ingrQuant[i] <= 0)
-                {
-                    Console.WriteLine("Please make sure your quantity is correctly input!");
-                    ingrQuant[i] = Convert.ToDouble(Console.ReadLine());
-                }
-                ingrUnit[i] = Console.ReadLine();
-                Console.WriteLine();
-            }
-
-            Console.WriteLine("Please indicate the amount of steps this recipe requires: ");
-            try
-            {
-                recipe.NumStep = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine("Please make sure you enter a number!");
-            }
-
-            string[] steps = new string[recipe.NumStep];
-            int q = 0;
-            for (int i = 0; i < steps.Length;i++)
-            {
-                q++;
-                Console.WriteLine($"Step {q}:");
-                steps[i] = Console.ReadLine();
-                Console.WriteLine();
-            }
+            recipe.createRecipe(ingrName,ingrQuant,ingrUnit);
             recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit);
-            recipe.DisplaySteps(steps);
+
             double[] scaledQuant = new double[ingrQuant.Length];
             int choice = 0;
             int c = 0;
@@ -115,7 +70,7 @@
 
                     Console.WriteLine("Here is the result:");
                     recipe.DisplayIngredients(ingrName, scaledQuant, ingrUnit);
-                    recipe.DisplaySteps(steps);
+                    
 
                     c = recipe.Menu(choice);
                 }
@@ -141,7 +96,7 @@
                             scaledQuant[i] = ingrQuant[i];
                         }
                         recipe.resetQuantity(ingrName,ingrQuant, ingrUnit);
-                        recipe.DisplaySteps(steps);
+                        
                     }
                     else
                     {

@@ -15,6 +15,53 @@ namespace ProgPoe
         public int NumStep = 0;
         public string[] Steps {get; set; }
 
+        public void createRecipe(string[] ingrName, double[] ingrQuant, string[] ingrUnit )
+        {
+            int j = 0;
+            for (int i = 0; i < ingrQuant.Length; i++)
+            {
+                j++;
+                Console.WriteLine($"For ingredient number {j},\n" +
+                    $"Please enter the name, quantity and unit of measurement:");
+                ingrName[i] = Console.ReadLine();
+                try
+                {
+                    ingrQuant[i] = Convert.ToDouble(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please make sure you enter a number!");
+                }
+
+                while (ingrQuant[i] <= 0)
+                {
+                    Console.WriteLine("Please make sure your quantity is correctly input!");
+                    ingrQuant[i] = Convert.ToDouble(Console.ReadLine());
+                }
+                ingrUnit[i] = Console.ReadLine();
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Please indicate the amount of steps this recipe requires: ");
+            try
+            {
+               NumStep = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Please make sure you enter a number!");
+            }
+
+            Steps = new string[NumStep];
+            int q = 0;
+            for (int i = 0; i < Steps.Length; i++)
+            {
+                q++;
+                Console.WriteLine($"Step {q}:");
+                Steps[i] = Console.ReadLine();
+                Console.WriteLine();
+            }
+        }
         public void DisplayIngredients(string[] NameOfIn, double[] QuantOfIn, string[] UnitOfIn)
         {
             int a = 0;
@@ -25,6 +72,7 @@ namespace ProgPoe
                 Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfIn[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
                 Console.WriteLine();
             }
+            DisplaySteps(Steps);
         }
         public void DisplaySteps(string[] Steps)
         {
@@ -98,6 +146,7 @@ namespace ProgPoe
                 Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfIn[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
                 Console.WriteLine();
             }
+            DisplaySteps(Steps);
         }
 
     }
