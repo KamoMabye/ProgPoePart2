@@ -9,7 +9,7 @@ namespace ProgPoe
     internal class Recipe
     {
         public string[] NameOfIn { get; set; }
-        public int[] QuantOfIn { get; set; }
+        public double[] QuantOfIn { get; set; }
         public string[] UnitOfIn { get; set; }
         public int NumIn = 0;
         public int NumStep = 0;
@@ -59,6 +59,11 @@ namespace ProgPoe
                 Console.WriteLine("Please make sure you enter a number!");
             }
 
+            QuantOfIn = new double[ingrQuant.Length];
+            for (int i = 0;i <ingrQuant.Length;i++)
+            {
+                QuantOfIn[i] = ingrQuant[i];
+            }
             Steps = new string[NumStep];
             int q = 0;
             for (int i = 0; i < Steps.Length; i++)
@@ -69,14 +74,14 @@ namespace ProgPoe
                 Console.WriteLine();
             }
         }
-        public void DisplayIngredients(string[] NameOfIn, double[] QuantOfIn, string[] UnitOfIn)
+        public void DisplayIngredients(string[] NameOfIn, double[] QuantOfI, string[] UnitOfIn)
         {
             int a = 0;
             Console.WriteLine("List of ingredients:");
             for (int i = 0;i<NameOfIn.Length;i++)
             {
                 a++;
-                Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfIn[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
+                Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfI[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
                 Console.WriteLine();
             }
             DisplaySteps(Steps);
@@ -94,33 +99,33 @@ namespace ProgPoe
             }
         }
 
-        public double[] scaleQuantity(double[] QuantOfIn,int scale)
+        public double[] scaleQuantity(int scale)
         {
             
-            double [] scaQuant = QuantOfIn;
+            
             if (scale == 1)
             {
-                for (int i = 0; i < scaQuant.Length; i++)
+                for (int i = 0; i < QuantOfIn.Length; i++)
                 {
-                    scaQuant[i] = scaQuant[i] * 0.5;
+                    QuantOfIn[i] = QuantOfIn[i] * 0.5;
                 }
             }
             else if (scale == 2)
             {
-                for (int i = 0; i < scaQuant.Length; i++)
+                for (int i = 0; i < QuantOfIn.Length; i++)
                 {
-                    scaQuant[i] = scaQuant[i] * 2;
+                    QuantOfIn[i] = QuantOfIn[i] * 2;
                 }
             }
             else
             {
-                for (int i = 0; i < scaQuant.Length; i++)
+                for (int i = 0; i < QuantOfIn.Length; i++)
                 {
-                    scaQuant[i] = scaQuant[i] * 3;
+                    QuantOfIn[i] = QuantOfIn[i] * 3;
                 }
             }
 
-            return scaQuant;
+            return QuantOfIn;
         }
 
         public int Menu(int choice)
@@ -142,15 +147,16 @@ namespace ProgPoe
             return choice;
         }
 
-        public void resetQuantity(string [] NameOfIn, double[] QuantOfIn, string[] UnitOfIn)
+        public void resetQuantity(string [] NameOfIn, double[] QuantOfI, string[] UnitOfIn)
         {
             Console.WriteLine("All quantites have been reset to their original quantities.");
+           //QuantOfIn = QuantOfI;
             int a = 0;
             Console.WriteLine("List of ingredients:");
             for (int i = 0; i < NameOfIn.Length; i++)
             {
                 a++;
-                Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfIn[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
+                Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfI[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
                 Console.WriteLine();
             }
             DisplaySteps(Steps);

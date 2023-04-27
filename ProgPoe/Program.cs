@@ -10,9 +10,9 @@
                 "Please indicate how many ingredients you would like to have:");
             try
             {
-                recipe.NumIn = Convert.ToInt32(Console.ReadLine());
+                recipe.NumIn = Convert.ToInt32(Console.ReadLine());//Will allow the user to enter the amount of ingredients they would like to use
             }
-            catch (FormatException e)
+            catch (FormatException e)//Added format exception to handle when a user enters characters that are not numbers
             {
                 Console.WriteLine("Please make sure you enter a number!");
             }
@@ -22,18 +22,18 @@
             double[] ingrQuant = new double[recipe.NumIn];
             string[] ingrName = new string[recipe.NumIn];
             string[] ingrUnit = new string[recipe.NumIn];
-
-            recipe.createRecipe(ingrName,ingrQuant,ingrUnit);
-            recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit);
-
+            
+            recipe.createRecipe(ingrName,ingrQuant,ingrUnit);// This method will allow the user to create their recipe
+            recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit);// This method will display the ingredients and steps in a nice list
+            
             double[] scaledQuant = new double[ingrQuant.Length];
             int choice = 0;
             int c = 0;
             int scale = 0;
-            c = recipe.Menu(choice);
+            c = recipe.Menu(choice);// Displays a menu which allows the user to scale up ingredients, reset the quantites and delete their recipe
             while (!(c >=4))
             {
-                if (c == 1)
+                if (c == 1)//Will allow the user to scale up their ingredient quantity
                 {
                     
                     Console.WriteLine("Please indicate how much you would like to scale the quantities by:\n" +
@@ -48,12 +48,8 @@
                     {
                         Console.WriteLine("Please make sure you enter a number!");
                     }
-                    double[] scaQuant = new double[ingrQuant.Length];
-                    for (int i = 0; i < ingrQuant.Length;i++)
-                    {
-                        scaQuant[i] = ingrQuant[i];
-                    }
-                    scaledQuant = recipe.scaleQuantity(scaQuant, scale);
+                    
+                    scaledQuant = recipe.scaleQuantity(scale);// This method scales up the quantites
 
                     if (scale == 1)
                     {
