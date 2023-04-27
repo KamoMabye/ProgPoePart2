@@ -18,6 +18,7 @@ namespace ProgPoe
         public void createRecipe(string[] ingrName, double[] ingrQuant, string[] ingrUnit )
         {
             int j = 0;
+            
             for (int i = 0; i < ingrQuant.Length; i++)
             {
                 j++;

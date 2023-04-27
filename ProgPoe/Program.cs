@@ -119,6 +119,18 @@
                     if (d == 1)
                     {
                         recipe.deleteRecipe(ingrName, ingrQuant, ingrUnit);
+                        Console.WriteLine("Please indicate how many ingredients you would like to have:");
+                        try
+                        {
+                            recipe.NumIn = Convert.ToInt32(Console.ReadLine());//Will allow the user to enter the amount of ingredients they would like to use
+                        }
+                        catch (FormatException e)//Added format exception to handle when a user enters characters that are not numbers
+                        {
+                            Console.WriteLine("Please make sure you enter a number!");
+                        }
+                         ingrQuant = new double[recipe.NumIn];
+                         ingrName = new string[recipe.NumIn];
+                         ingrUnit = new string[recipe.NumIn];
                         recipe.createRecipe(ingrName, ingrQuant, ingrUnit);
                         recipe.DisplayIngredients(ingrName, ingrQuant, ingrUnit);
                     }
@@ -129,8 +141,8 @@
                 }
 
             }
-               
-            
+            Console.WriteLine("Thank you for using the Recipe Creator!");
+            Console.ReadKey();
         }
     }
 }
