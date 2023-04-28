@@ -15,6 +15,7 @@
             catch (FormatException e)//Added format exception to handle when a user enters characters that are not numbers
             {
                 Console.WriteLine("Please make sure you enter a number!");
+                Environment.Exit(0);
             }
 
             Console.WriteLine();
@@ -47,6 +48,7 @@
                     catch (FormatException e)
                     {
                         Console.WriteLine("Please make sure you enter a number!");
+                        Environment.Exit(0);
                     }
                     
                     scaledQuant = recipe.scaleQuantity(scale);// This method scales up the quantites
@@ -84,6 +86,7 @@
                     catch (FormatException e)
                     {
                         Console.WriteLine("Please make sure you enter a number!");
+                        Environment.Exit(0);
                     }
 
                     if (con == 1)
@@ -115,6 +118,7 @@
                     catch (FormatException e)
                     {
                         Console.WriteLine("Please make sure you enter a number!");
+                        Environment.Exit(0);
                     }
 
                     if (d == 1)
@@ -128,6 +132,7 @@
                         catch (FormatException e)//Added format exception to handle when a user enters characters that are not numbers
                         {
                             Console.WriteLine("Please make sure you enter a number!");
+                            Environment.Exit(0);
                         }
                          ingrQuant = new double[recipe.NumIn];
                          ingrName = new string[recipe.NumIn];

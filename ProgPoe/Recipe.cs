@@ -32,6 +32,7 @@ namespace ProgPoe
                 catch (FormatException e)
                 {
                     Console.WriteLine("Please make sure you enter a number!");
+                    Environment.Exit(0);
                 }
 
                 while (ingrQuant[i] <= 0)
@@ -44,6 +45,7 @@ namespace ProgPoe
                     catch (FormatException e)
                     {
                         Console.WriteLine("Please make sure you enter a number!");
+                        Environment.Exit(0);
                     }
                 }
                 ingrUnit[i] = Console.ReadLine();
@@ -58,6 +60,7 @@ namespace ProgPoe
             catch (FormatException e)
             {
                 Console.WriteLine("Please make sure you enter a number!");
+                Environment.Exit(0);
             }
 
             QuantOfIn = new double[ingrQuant.Length];
@@ -144,6 +147,7 @@ namespace ProgPoe
             catch (FormatException e)
             {
                 Console.WriteLine("Please make sure you enter a number!");
+                Environment.Exit(0);
             }
             return choice;
         }
