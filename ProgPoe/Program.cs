@@ -65,7 +65,8 @@
                     }
 
                     Console.WriteLine("Here is the result:");
-                    recipe.DisplayIngredients(ingrName, scaledQuant, ingrUnit);
+                    recipe.DisplayIngredients(ingrName, scaledQuant, ingrUnit);//This will display the scaled up ingredients
+
                     
 
                     c = recipe.Menu(choice);
@@ -91,7 +92,7 @@
                         {
                             scaledQuant[i] = ingrQuant[i];
                         }
-                        recipe.resetQuantity(ingrName,ingrQuant, ingrUnit);
+                        recipe.resetQuantity(ingrName,ingrQuant, ingrUnit);// This method resets the quantities to the original value
                         
                     }
                     else
@@ -118,7 +119,7 @@
 
                     if (d == 1)
                     {
-                        recipe.deleteRecipe(ingrName, ingrQuant, ingrUnit);
+                        recipe.deleteRecipe(ingrName, ingrQuant, ingrUnit);//Will clear all arrays 
                         Console.WriteLine("Please indicate how many ingredients you would like to have:");
                         try
                         {
@@ -131,8 +132,8 @@
                          ingrQuant = new double[recipe.NumIn];
                          ingrName = new string[recipe.NumIn];
                          ingrUnit = new string[recipe.NumIn];
-                        recipe.createRecipe(ingrName, ingrQuant, ingrUnit);
-                        recipe.DisplayIngredients(ingrName, ingrQuant, ingrUnit);
+                        recipe.createRecipe(ingrName, ingrQuant, ingrUnit);//Allows the user to enter their ingredients and steps
+                        recipe.DisplayIngredients(ingrName, ingrQuant, ingrUnit);//Will display the users ingredients and steps
                     }
                     else{
                         Console.WriteLine("Your recipe was not deleted.");
@@ -141,7 +142,7 @@
                 }
 
             }
-            Console.WriteLine("Thank you for using the Recipe Creator!");
+            Console.WriteLine("Thank you for using the Recipe Creator!");//Once the user choses to exit the application, it will display a thank you message.
             Console.ReadKey();
         }
     }

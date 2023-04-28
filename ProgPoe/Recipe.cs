@@ -168,6 +168,7 @@ namespace ProgPoe
             Array.Clear(ingrName);
             Array.Clear(ingrQuant);
             Array.Clear(ingrUnit);
+            Array.Clear(Steps);
             Console.WriteLine("Your recipe has been deleted! Create a new recipe now:");
         }
     }
