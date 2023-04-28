@@ -79,19 +79,19 @@ namespace ProgPoe
         {
             int a = 0;
             Console.WriteLine("List of ingredients:");
-            for (int i = 0;i<NameOfIn.Length;i++)
+            for (int i = 0;i<NameOfIn.Length;i++)// For loop used to loop through the arrays and display the name, quantity and unit of measurement
             {
                 a++;
                 Console.WriteLine($"Ingredient {a}:\n" + $"Name: {NameOfIn[i]}\n" + $"Quanity: {QuantOfI[i]}\n" + $"Unit of measurement: {UnitOfIn[i]}");
                 Console.WriteLine();
             }
-            DisplaySteps(Steps);
+            DisplaySteps(Steps);// Will run the display steps method which will display the steps for the recipe
         }
         public void DisplaySteps(string[] Steps)
         {
             int b = 0;
             Console.WriteLine("Steps for the recipe:");
-            for (int i = 0; i< Steps.Length;i++)
+            for (int i = 0; i< Steps.Length;i++)// For loop used to display the array of steps
             {
                 b++;
                 Console.WriteLine($"Step {b}:\n" +
@@ -106,7 +106,7 @@ namespace ProgPoe
             
             if (scale == 1)
             {
-                for (int i = 0; i < QuantOfIn.Length; i++)
+                for (int i = 0; i < QuantOfIn.Length; i++)//Will scale the quantity of the ingredient depending on which scale is chosen
                 {
                     QuantOfIn[i] = QuantOfIn[i] * 0.5;
                 }
@@ -129,7 +129,7 @@ namespace ProgPoe
             return QuantOfIn;
         }
 
-        public int Menu(int choice)
+        public int Menu(int choice)//This will display a menu wit options for the user
         {
             Console.WriteLine("What would you like to do with your recipe?\n" +
                 "1.) Scale up quantities of ingredients\n" +
@@ -151,7 +151,7 @@ namespace ProgPoe
         public void resetQuantity(string [] NameOfIn, double[] QuantOfI, string[] UnitOfIn)
         {
             Console.WriteLine("All quantites have been reset to their original quantities.");
-           //QuantOfIn = QuantOfI;
+           
             int a = 0;
             Console.WriteLine("List of ingredients:");
             for (int i = 0; i < NameOfIn.Length; i++)
@@ -165,7 +165,7 @@ namespace ProgPoe
 
         public void deleteRecipe(string[] ingrName, double[] ingrQuant, string[] ingrUnit)
         {
-            Array.Clear(ingrName);
+            Array.Clear(ingrName);//These methods will clear out all the arrays
             Array.Clear(ingrQuant);
             Array.Clear(ingrUnit);
             Array.Clear(Steps);
