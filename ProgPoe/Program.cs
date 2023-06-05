@@ -1,13 +1,29 @@
-﻿namespace ProgPoe
+﻿using System.Collections;
+
+
+delegate string totalCalories();
+namespace ProgPoe
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             Recipe recipe = new Recipe();
+            string recipeName;
+            List<double> ingrQuant = new List<double>();
+            List<string> ingrName = new List<string>();
+            List<string> ingrUnit = new List<string>();
+            List<double> ingrCal = new List<double>();
+            List<string> ingrFood = new List<string>();
+            List<double> totalCalories = new List<double>();
+            SortedList<string, string> r = new SortedList<string, string>();
 
+            
             Console.WriteLine("Welcome to the Recipe Creator!\n" +
-                "Please indicate how many ingredients you would like to have:");
+                "What name will you give this recipe?");
+            recipeName = Console.ReadLine();
+
+            Console.WriteLine("Please indicate how many ingredients you would like to have:");
             try
             {
                 recipe.NumIn = Convert.ToInt32(Console.ReadLine());//Will allow the user to enter the amount of ingredients they would like to use
@@ -19,15 +35,11 @@
             }
 
             Console.WriteLine();
-
-            double[] ingrQuant = new double[recipe.NumIn];
-            string[] ingrName = new string[recipe.NumIn];
-            string[] ingrUnit = new string[recipe.NumIn];
             
-            recipe.createRecipe(ingrName,ingrQuant,ingrUnit);// This method will allow the user to create their recipe
-            recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit);// This method will display the ingredients and steps in a nice list
+            recipe.createRecipe(ingrName,ingrQuant,ingrUnit, ingrCal, ingrFood);// This method will allow the user to create their recipe
+            recipe.DisplayIngredients(ingrName,ingrQuant,ingrUnit, ingrCal, ingrFood, totalCalories);// This method will display the ingredients and steps in a nice list
             
-            double[] scaledQuant = new double[ingrQuant.Length];
+            List<double> scaledQuant = new List<double>();
             int choice = 0;
             int c = 0;
             int scale = 0;
@@ -67,7 +79,7 @@
                     }
 
                     Console.WriteLine("Here is the result:");
-                    recipe.DisplayIngredients(ingrName, scaledQuant, ingrUnit);//This will display the scaled up ingredients
+                    recipe.DisplayIngredients(ingrName, scaledQuant, ingrUnit, ingrCal, ingrFood, totalCalories);//This will display the scaled up ingredients
 
                     
 
@@ -91,7 +103,7 @@
 
                     if (con == 1)
                     {
-                        for (int i = 0; i < ingrQuant.Length; i++)
+                        for (int i = 0; i < ingrQuant.Count; i++)
                         {
                             scaledQuant[i] = ingrQuant[i];
                         }
@@ -134,13 +146,12 @@
                             Console.WriteLine("Please make sure you enter a number!");
                             Environment.Exit(0);
                         }
-                         ingrQuant = new double[recipe.NumIn];
-                         ingrName = new string[recipe.NumIn];
-                         ingrUnit = new string[recipe.NumIn];
-                        recipe.createRecipe(ingrName, ingrQuant, ingrUnit);//Allows the user to enter their ingredients and steps
-                        recipe.DisplayIngredients(ingrName, ingrQuant, ingrUnit);//Will display the users ingredients and steps
+                        recipe.createRecipe(ingrName, ingrQuant, ingrUnit, ingrCal, ingrFood);// This method will allow the user to create their recipe
+                        recipe.DisplayIngredients(ingrName, ingrQuant, ingrUnit, ingrCal, ingrFood, totalCalories);// This method will display the ingredients and steps in a nice list
+
                     }
-                    else{
+                    else
+                    {
                         Console.WriteLine("Your recipe was not deleted.");
                     }
                     c = recipe.Menu(choice);
