@@ -10,12 +10,9 @@ namespace ProgPoe
     {
 
         public delegate string calExceeds(double calories);
-        public string[] NameOfIn { get; set; }
-        public List<double> QuantOfIn = new List<double>();
-        public string[] UnitOfIn { get; set; }
-        public int NumIn = 0;
-        public int NumStep = 0;
-        public List <string> Steps = new List<string>();
+        public string recipeName { get; set; }
+        public List<Ingredient> ingredient = new List<Ingredient>();
+        public List<string> Steps = new List<string>();
 
         public void createRecipe(List<string> ingrName, List<double> ingrQuant, List<string> ingrUnit, List<double> ingrCal, List<string> ingrFood)
         {

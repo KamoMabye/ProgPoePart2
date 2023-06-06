@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Net.NetworkInformation;
 
 
 delegate string totalCalories();
@@ -6,16 +7,33 @@ namespace ProgPoe
 {
     internal class Program
     {
+        static List<Recipe> recipes = new List<Recipe>();
         static void Main(string[] args)
         {
-            Recipe recipe = new Recipe();
-            string recipeName;
             
-            Console.WriteLine("Welcome to the Recipe Creator!\n" +
-                "What name will you give this recipe?");
-            recipeName = Console.ReadLine();
+            
+            int choice;
+            choice = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Please indicate how many ingredients you would like to have:");
+            while (choice <=4)
+            {
+
+                Console.WriteLine("Welcome to the Recipe Creator!\n" +
+                            "1.) Create new recipe\n" +
+                            "2.) Show created recipes\n" +
+                            "3.) Select a recipe\n" +
+                            "4.) Exit");
+
+                if (choice == 1)
+                {
+                    createRecipe();
+                }
+            }
+
+             
+            
+
+            
             try
             {
                 recipe.NumIn = Convert.ToInt32(Console.ReadLine());//Will allow the user to enter the amount of ingredients they would like to use
@@ -153,5 +171,85 @@ namespace ProgPoe
             Console.WriteLine("Thank you for using the Recipe Creator!");//Once the user choses to exit the application, it will display a thank you message.
             Console.ReadKey();
         }
+
+        static void createRecipe()
+        {
+            Recipe recipe = new Recipe();
+
+            Console.WriteLine("Please enter the name of the recipe:");
+            recipe.recipeName = Console.ReadLine();
+
+            Console.WriteLine("Please indicate how many ingredients you would like to have:");
+            int numIn = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i < numIn;i++)
+            {
+                Ingredient ingr = new Ingredient();
+
+                Console.WriteLine($"For ingredient number {j},\n" +
+                $"Please enter the name, quantity and unit of measurement:");
+
+                ingr.ingrName = Console.ReadLine();
+                ingr.ingrQuant = Convert.ToDouble(Console.ReadLine());
+                ingr.ingrUnit = Console.ReadLine();
+
+                Console.WriteLine("Please enter the amount of calories for this ingredient:");
+                ingr.ingrCal = Convert.ToDouble(Console.ReadLine());
+                int foodGrp = 0;
+                while (foodGrp <= 0 || foodGrp > 7)
+                {
+                    Console.WriteLine("Please make sure you select the correct number for the food group!");
+                    Console.WriteLine("Please specify the food group of the ingredient by inputting a number:\n" +
+                    "1. Starchy Food\n" +
+                    "2. Fruits and Vegetables\n" +
+                    "3. Dry beans, peas, lentils and soya\n" +
+                    "4. Chicken, fish, meat and eggs\n" +
+                    "5. Milk and dairy products\n" +
+                    "6. Fats and oils" +
+                    "7. Water");
+                    foodGrp = Convert.ToInt32(Console.ReadLine());
+                }
+
+                switch (foodGrp)
+                {
+                    case 1:
+                        ingr.ingrFood = "Starchy Food";
+                        break;
+                    case 2:
+                        ingr.ingrFood = "Fruits and Vegetables";
+                        break;
+                    case 3:
+                        ingr.ingrFood = "Dry beans, peas, lentils and soya";
+                        break;
+                    case 4:
+                        ingr.ingrFood = "Chicken, fish, meat and eggs";
+                        break;
+                    case 5:
+                        ingr.ingrFood = "Milk and dairy products";
+                        break;
+                    case 6:
+                        ingr.ingrFood = "Fats and oils";
+                        break;
+                    case 7:
+                        ingr.ingrFood = "Water";
+                        break;
+                }
+
+                recipe.ingredient.Add(ingr);
+            }
+
+            Console.WriteLine("Please indicate the amount of steps this recipe requires: ");
+            int numSteps = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i< numSteps;i++)
+            {
+                string step = Console.ReadLine();
+                recipe.Steps.Add(step);
+            }
+            recipes.Add(recipe);
+
+            Console.WriteLine("Recipe added successfully!");
+        }
+
     }
 }
