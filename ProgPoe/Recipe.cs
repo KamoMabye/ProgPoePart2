@@ -71,7 +71,7 @@ namespace ProgPoe
                     "3. Dry beans, peas, lentils and soya\n" +
                     "4. Chicken, fish, meat and eggs\n" +
                     "5. Milk and dairy products\n" +
-                    "6. Fats and oils" +
+                    "6. Fats and oils" 
                     "7. Water");
                     foodGrp = Convert.ToInt32(Console.ReadLine());
                 }

@@ -251,5 +251,35 @@ namespace ProgPoe
             Console.WriteLine("Recipe added successfully!");
         }
 
+        static void showRecipes()
+        {
+            if (recipes.Count == 0)
+            {
+                Console.WriteLine("No recipes found.");
+                return;
+            }
+
+            Console.WriteLine("All Recipes:");
+
+            foreach (Recipe recipe in recipes.OrderBy(r => r.recipeName))
+            {
+                Console.WriteLine(recipe.recipeName);
+            }
+        }
+
+        static void selectRecipe()
+        {
+            if (recipes.Count == 0)
+            {
+                Console.WriteLine("No recipes found.");
+                return;
+            }
+
+            Console.WriteLine("Select a recipe: ");
+            for (int i = 0; i<recipes.Count;i++)
+            {
+                Console.WriteLine($"{i + 1}.) {recipes[i].recipeName}");
+            }
+        }
     }
 }
