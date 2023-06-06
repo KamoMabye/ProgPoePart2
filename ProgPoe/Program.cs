@@ -10,14 +10,6 @@ namespace ProgPoe
         {
             Recipe recipe = new Recipe();
             string recipeName;
-            List<double> ingrQuant = new List<double>();
-            List<string> ingrName = new List<string>();
-            List<string> ingrUnit = new List<string>();
-            List<double> ingrCal = new List<double>();
-            List<string> ingrFood = new List<string>();
-            List<double> totalCalories = new List<double>();
-            SortedList<string, string> r = new SortedList<string, string>();
-
             
             Console.WriteLine("Welcome to the Recipe Creator!\n" +
                 "What name will you give this recipe?");
