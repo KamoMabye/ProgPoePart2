@@ -27,7 +27,7 @@ namespace ProgPoe
                             "4.) Exit");
                 try
                 {
-                    choice = Convert.ToInt32(Console.ReadLine());
+                    choice = Convert.ToInt32(Console.ReadLine());// Allows the user to select which option theu would like to do
                 }
                 catch (FormatException e)
                 {
@@ -56,7 +56,7 @@ namespace ProgPoe
         static void createRecipe()
         {
             Recipe recipe = new Recipe();
-            recipe.calExceeds += calExceededMessage;
+            recipe.calExceeds += calExceededMessage;// This method will be invoked once the total amount of calories exceeds 300
 
             Console.WriteLine("Please enter the name of the recipe:");
             recipe.recipeName = Console.ReadLine();
@@ -95,7 +95,7 @@ namespace ProgPoe
                 Console.WriteLine("Please enter the amount of calories for this ingredient:");
                 ingr.ingrCal = Convert.ToDouble(Console.ReadLine());
                 int foodGrp = 0;
-                while (foodGrp <= 0 || foodGrp > 7)
+                while (foodGrp <= 0 || foodGrp > 7)// Will make sure the number selected is not less than 1 and greater than 7
                 {
                     Console.WriteLine("Please make sure you select the correct number for the food group!");
                     Console.WriteLine("Please specify the food group of the ingredient by inputting a number:\n" +
@@ -108,7 +108,7 @@ namespace ProgPoe
                     "7. Water");
                     try
                     {
-                        foodGrp = Convert.ToInt32(Console.ReadLine());
+                        foodGrp = Convert.ToInt32(Console.ReadLine());// Will allow the user to specify which food group they would like to use
                     }
                     catch (FormatException e)
                     {
@@ -158,7 +158,7 @@ namespace ProgPoe
             }
             
 
-            for (int i = 0; i< numSteps;i++)
+            for (int i = 0; i< numSteps;i++)// This allows the user to enter each step of the recipe
             {
                 Console.Write($"Step {i + 1}:");
                 string step = Console.ReadLine();
@@ -179,7 +179,7 @@ namespace ProgPoe
 
             Console.WriteLine("All Recipes:");
 
-            foreach (Recipe recipe in recipes.OrderBy(r => r.recipeName))
+            foreach (Recipe recipe in recipes.OrderBy(r => r.recipeName))// Will display all the created recipes in alphabetical order
             {
                 Console.WriteLine($"{recipe.recipeName}");
             }
@@ -194,7 +194,7 @@ namespace ProgPoe
             }
 
             Console.WriteLine("Select a recipe: ");
-            for (int i = 0; i < recipes.Count; i++)
+            for (int i = 0; i < recipes.Count; i++)// Will display all created recipes and allow the user to select which one they want to view and edit
             {
                 Console.WriteLine($"{i + 1}.) {recipes[i].recipeName}");
             }
@@ -221,7 +221,7 @@ namespace ProgPoe
             Recipe selectedRecipe = recipes[recipeNum - 1];
             Console.WriteLine($"Recipe Name: {selectedRecipe.recipeName}");
 
-            foreach (Ingredient i in selectedRecipe.ingredient)// For loop used to loop through the arrays and display the name, quantity and unit of measurement
+            foreach (Ingredient i in selectedRecipe.ingredient)// Foreach loop used to loop through the list and display the name, quantity, unit of measurement, calories and food group
             {
                 Console.WriteLine(
                     $"Name: {i.ingrName}\n" +
@@ -234,12 +234,12 @@ namespace ProgPoe
 
             Console.WriteLine("Steps:");
 
-            for (int i = 0; i < selectedRecipe.Steps.Count; i++)
+            for (int i = 0; i < selectedRecipe.Steps.Count; i++) // For loop used to loop and display all steps for the recipe
             {
                 Console.WriteLine($"Step {i + 1}: {selectedRecipe.Steps[i]} ");
             }
 
-            double totalCalories = selectedRecipe.totalCalories();
+            double totalCalories = selectedRecipe.totalCalories(); // method used to calculate the total calories for the recipe
             Console.WriteLine($"Total Calories for this recipe: {totalCalories}");
             
 
@@ -263,7 +263,7 @@ namespace ProgPoe
 
             if (choice2 == 1)
             {
-                scaleQuantities(selectedRecipe, 0.5);
+                scaleQuantities(selectedRecipe, 0.5);// This will scale up the quantites of the ingredients
             }
             else if (choice2 == 2)
             {
@@ -275,11 +275,11 @@ namespace ProgPoe
             }
             else if (choice2 == 4)
             {
-                resetQuantites(selectedRecipe);
+                resetQuantites(selectedRecipe);// This will reset the quantities of the ingredients to their original values
             }
             else
             {
-                return;
+                return;// will return to the main menu
             }
         }
 
@@ -305,7 +305,7 @@ namespace ProgPoe
 
         static void calExceededMessage(Recipe recipe)
         {
-            Console.WriteLine($"The recipe {recipe.recipeName} exceeds 300 calories!");
+            Console.WriteLine($"The recipe {recipe.recipeName} exceeds 300 calories!");// Displays message when the total calories is over 300
         }
     }
 }

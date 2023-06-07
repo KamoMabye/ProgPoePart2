@@ -18,12 +18,12 @@ namespace ProgPoe
         {
             double totalCalories = 0;
 
-            foreach (Ingredient ingr in ingredient)
+            foreach (Ingredient ingr in ingredient)// Will add up all calories into a total
             {
                 totalCalories = totalCalories + ingr.ingrCal;
             }
 
-            if (totalCalories > 300)
+            if (totalCalories > 300)// This checks if the total calories is over 300 and will envoke a method which will display an appropriate message
             {
                 calExceeds?.Invoke(this);
             }
@@ -32,29 +32,5 @@ namespace ProgPoe
         }
 
         
-        public void DisplaySteps(List<string> Steps)
-        {
-            int b = 0;
-            Console.WriteLine("Steps for the recipe:");
-            foreach (var s in Steps)
-            {
-                b++;
-                Console.WriteLine($"Step {b}:" +
-                    $"{s}");
-                
-            }
-        }
-
-
-        public double calCalculation(List<double> ingrCal)
-        {
-            double t = 0;
-            for (int i = 0; i< ingrCal.Count; i++)
-            {
-                t = ingrCal[i] + t;
-            }
-
-            return t;
-        }
     }
 }

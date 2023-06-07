@@ -8,15 +8,19 @@ namespace POEUnitTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestAddCalories()
+        public void calculateTotalCalories()
         {
-                double t = 0;
-                for (int i = 0; i < ingrCal.Count; i++)
-                {
-                    t = ingrCal[i] + t;
-                }
+            Recipe recipe = new Recipe();
+            Ingredient ingredient1 = new Ingredient("Sugar", 1, "tablespoon", 50, "Fats and Oils");
+            Ingredient ingredient2 = new Ingredient("Flour", 2, "cups", 300, "Starchy Foods");
+            recipe.Ingredients.Add(ingredient1);
+            recipe.Ingredients.Add(ingredient2);
 
-                return t;
+            // Act
+            int totalCal = recipe.totalCalories();
+
+            // Assert
+            Assert.AreEqual(350, totalCal);
         }
     }
 }
