@@ -25,7 +25,16 @@ namespace ProgPoe
                             "2.) Show created recipes\n" +
                             "3.) Select a recipe\n" +
                             "4.) Exit");
-                choice = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please make sure you enter a number!");
+                    return;
+                }
+
                 if (choice == 1)
                 {
                     createRecipe();
@@ -72,7 +81,15 @@ namespace ProgPoe
                 $"Please enter the name, quantity and unit of measurement:");
 
                 ingr.ingrName = Console.ReadLine();
-                ingr.ingrQuant = Convert.ToDouble(Console.ReadLine());
+                try
+                {
+                    ingr.ingrQuant = Convert.ToDouble(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Please make sure you enter a number!");
+                    return;
+                }
                 ingr.ingrUnit = Console.ReadLine();
 
                 Console.WriteLine("Please enter the amount of calories for this ingredient:");
@@ -89,7 +106,15 @@ namespace ProgPoe
                     "5. Milk and dairy products\n" +
                     "6. Fats and oils\n" +
                     "7. Water");
-                    foodGrp = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        foodGrp = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Please make sure you enter a number!");
+                        return;
+                    }
                 }
 
                 switch (foodGrp)
@@ -121,7 +146,17 @@ namespace ProgPoe
             }
 
             Console.WriteLine("Please indicate the amount of steps this recipe requires: ");
-            int numSteps = Convert.ToInt32(Console.ReadLine());
+            int numSteps = 0;
+            try
+            {
+                numSteps = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Please make sure you enter a number!");
+                return;
+            }
+            
 
             for (int i = 0; i< numSteps;i++)
             {
@@ -146,7 +181,7 @@ namespace ProgPoe
 
             foreach (Recipe recipe in recipes.OrderBy(r => r.recipeName))
             {
-                Console.WriteLine(recipe.recipeName);
+                Console.WriteLine($"{recipe.recipeName}");
             }
         }
 
@@ -165,7 +200,17 @@ namespace ProgPoe
             }
 
             Console.WriteLine("Indicate which recipe you would like to see: ");
-            int recipeNum = Convert.ToInt32(Console.ReadLine());
+            int recipeNum = 0;
+            try
+            {
+                recipeNum = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Please make sure you enter a number!");
+                return;
+            }
+            
 
             if (recipeNum <= 0 || recipeNum > recipes.Count)
             {
@@ -204,7 +249,17 @@ namespace ProgPoe
                    "3.) Scale the quantites by 3\n" +
                    "4.) Reset all quantites to original\n" +
                    "5.) Return to main menu");
-            int choice2 = Convert.ToInt32(Console.ReadLine());
+            int choice2 = 0;
+            try
+            {
+                choice2 = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Please make sure you enter a number!");
+                return;
+            }
+            
 
             if (choice2 == 1)
             {
