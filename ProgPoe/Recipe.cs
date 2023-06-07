@@ -8,12 +8,11 @@ namespace ProgPoe
 {
     internal class Recipe
     {
-
-        public delegate string calExceeds(double calories);
+        public delegate void RecipeNotification(Recipe recipe);
         public string recipeName { get; set; }
         public List<Ingredient> ingredient = new List<Ingredient>();
         public List<string> Steps = new List<string>();
-
+        public event RecipeNotification calExceeds;
 
         public double totalCalories()
         {
@@ -22,6 +21,11 @@ namespace ProgPoe
             foreach (Ingredient ingr in ingredient)
             {
                 totalCalories = totalCalories + ingr.ingrCal;
+            }
+
+            if (totalCalories > 300)
+            {
+                calExceeds?.Invoke(this);
             }
 
             return totalCalories;

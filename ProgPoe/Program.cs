@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using ProgPoe;
+using System.Collections;
 using System.Net.NetworkInformation;
 using static System.Formats.Asn1.AsnWriter;
 
 
-delegate string totalCalories();
 namespace ProgPoe
 {
+    
     internal class Program
     {
         static List<Recipe> recipes = new List<Recipe>();
+        
+
         static void Main(string[] args)
         {
             
@@ -44,12 +47,22 @@ namespace ProgPoe
         static void createRecipe()
         {
             Recipe recipe = new Recipe();
+            recipe.calExceeds += calExceededMessage;
 
             Console.WriteLine("Please enter the name of the recipe:");
             recipe.recipeName = Console.ReadLine();
 
             Console.WriteLine("Please indicate how many ingredients you would like to have:");
-            int numIn = Convert.ToInt32(Console.ReadLine());
+            int numIn = 0;
+            try
+            {
+                numIn = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Please make sure you enter a number!");
+                return;
+            }
 
             for (int i = 0; i < numIn;i++)
             {
@@ -74,7 +87,7 @@ namespace ProgPoe
                     "3. Dry beans, peas, lentils and soya\n" +
                     "4. Chicken, fish, meat and eggs\n" +
                     "5. Milk and dairy products\n" +
-                    "6. Fats and oils" +
+                    "6. Fats and oils\n" +
                     "7. Water");
                     foodGrp = Convert.ToInt32(Console.ReadLine());
                 }
@@ -112,8 +125,8 @@ namespace ProgPoe
 
             for (int i = 0; i< numSteps;i++)
             {
-                string step = Console.ReadLine();
                 Console.Write($"Step {i + 1}:");
+                string step = Console.ReadLine();
                 recipe.Steps.Add(step);
             }
             recipes.Add(recipe);
@@ -146,7 +159,7 @@ namespace ProgPoe
             }
 
             Console.WriteLine("Select a recipe: ");
-            for (int i = 0; i<recipes.Count;i++)
+            for (int i = 0; i < recipes.Count; i++)
             {
                 Console.WriteLine($"{i + 1}.) {recipes[i].recipeName}");
             }
@@ -154,7 +167,7 @@ namespace ProgPoe
             Console.WriteLine("Indicate which recipe you would like to see: ");
             int recipeNum = Convert.ToInt32(Console.ReadLine());
 
-            if (recipeNum<= 0 || recipeNum > recipes.Count)
+            if (recipeNum <= 0 || recipeNum > recipes.Count)
             {
                 Console.WriteLine("Invalid recipe number. Please try again.");
                 return;
@@ -178,12 +191,66 @@ namespace ProgPoe
 
             for (int i = 0; i < selectedRecipe.Steps.Count; i++)
             {
-                Console.WriteLine($"Step {i +1}: {selectedRecipe.Steps[i]} ");
+                Console.WriteLine($"Step {i + 1}: {selectedRecipe.Steps[i]} ");
             }
 
             double totalCalories = selectedRecipe.totalCalories();
             Console.WriteLine($"Total Calories for this recipe: {totalCalories}");
-
             
+
+            Console.WriteLine("What would you like to do to this recipe?\n" +
+                   "1.) Scale the quantites by 0.5\n" +
+                   "2.) Scale the quantites by 2\n" +
+                   "3.) Scale the quantites by 3\n" +
+                   "4.) Reset all quantites to original\n" +
+                   "5.) Return to main menu");
+            int choice2 = Convert.ToInt32(Console.ReadLine());
+
+            if (choice2 == 1)
+            {
+                scaleQuantities(selectedRecipe, 0.5);
+            }
+            else if (choice2 == 2)
+            {
+                scaleQuantities(selectedRecipe, 2);
+            }
+            else if (choice2 == 3)
+            {
+                scaleQuantities(selectedRecipe, 3);
+            }
+            else if (choice2 == 4)
+            {
+                resetQuantites(selectedRecipe);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        static void scaleQuantities(Recipe recipe, double scale)
+        {
+            foreach (Ingredient ingr in recipe.ingredient)
+            {
+                ingr.ingrQuant = ingr.ingrQuant * scale;
+            }
+
+            Console.WriteLine($"The quantities have been scaled by {scale}");
+        }
+
+        static void resetQuantites(Recipe recipe)
+        {
+            foreach (Ingredient ingr in recipe.ingredient)
+            {
+                ingr.ingrQuant = ingr.ingrQuant;
+            }
+
+            Console.WriteLine("Quantities reset to original values.");
+        }
+
+        static void calExceededMessage(Recipe recipe)
+        {
+            Console.WriteLine($"The recipe {recipe.recipeName} exceeds 300 calories!");
+        }
     }
 }
